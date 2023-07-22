@@ -38,7 +38,7 @@ class forgejo::install(
 
   archive { $tmp_forgejo_path:
     ensure  => present,
-    source  => "",
+    source  => $download_source,
     creates => $tmp_forgejo_path,
     extract => false,
     before  => File[$forgejo_binary_path],

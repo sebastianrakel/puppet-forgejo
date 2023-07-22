@@ -1,15 +1,17 @@
 class forgejo::service(
+  String[1] $database_servicename_postgresql,
 ) {
   $database_service = $forgejo::database_type ? {
-    'postgresql' => $forgejo::database_servicename_postgresql,
+    'postgresql' => $database_servicename_postgresql,
+    default      => undef,
   }
 
   systemd::unit_file { 'forgejo.service':
     content => epp("${module_name}/forgejo.service.epp", {
-        user          => $forgejo::user,
-        group         => $forgejo::group,
-        home          => $forgejo::home,
-        database_type => $forgejo::database_type,
+        user             => $forgejo::user,
+        group            => $forgejo::group,
+        home             => $forgejo::home,
+        database_service => $database_service,
     }),
   }
   ~> service { 'forgejo':
