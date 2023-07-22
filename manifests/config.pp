@@ -4,8 +4,8 @@ class forgejo::config(
   String[1] $data_dir,
   String[1] $domain,
   String[1] $root_url,
-  String[1] $disable_registration,
-  String[1] $disable_git_hooks,
+  Boolean $disable_registration,
+  Boolean $disable_git_hooks,
 ) {
   $forgejo_db_type = case $forgejo::database_type {
     'postgresql': {

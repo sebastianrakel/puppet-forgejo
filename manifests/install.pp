@@ -19,7 +19,7 @@ class forgejo::install(
     "${forgejo::home}/forgejo",
   ]
 
-  file { $foargejo_dirs:
+  file { $forgejo_dirs:
     ensure => 'directory',
     owner  => $forgejo::user,
     group  => $forgejo::group,
