@@ -1,0 +1,29 @@
+<%- | String $database_service,
+      String $home,
+      String $user,
+      String $group,
+%>
+
+[Unit]
+Description=Forgejo (Beyond coding. We forge.)
+After=syslog.target
+After=network.target
+
+<% if $database_service { -%>
+Wants=<%= $database_service %>.service
+After=<%= $database_service %>.service
+<% } -%>
+
+[Service]
+RestartSec=2s
+Type=simple
+User=<%= $user %>
+Group=<%= $group %>
+WorkingDirectory=<%= $home %>
+
+ExecStart=/usr/local/bin/forgejo web --config /etc/forgejo/app.ini
+Restart=always
+Environment=USER=<%= $user %> HOME=<%= $home %> GITEA_WORK_DIR=<%= $home %>
+
+[Install]
+WantedBy=multi-user.target

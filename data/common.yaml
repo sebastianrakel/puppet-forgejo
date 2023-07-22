@@ -1,0 +1,18 @@
+---
+forgejo::version: '1.19.4-0'
+forgejo::home: /var/lib/forgejo
+forgejo::user: git
+forgejo::group: git
+forgejo::database_type: sqlite
+forgejo::database_user: forgejo
+forgejo::database_name: forgejo
+forgejo::database_servicename_postgresql: postgresql
+forgejo::install::download_source: https://codeberg.org/forgejo/forgejo/releases/download/v${forgejo::version}/forgejo-${forgejo::version}-linux-amd64
+forgejo::config_dir: /etc/forgejo/
+forgejo::config::app_name: 'Forgejo'
+forgejo::config::run_mode: 'prod'
+forgejo::config::data_dir: ${forgejo::home}/forgejo/data/
+forgejo::config::domain: 'localhost'
+forgejo::config::root_url: '%(PROTOCOL)s://%(DOMAIN)s:%(HTTP_PORT)s/'
+forgejo::config::disable_registration: false
+forgejo::config::disable_git_hooks: true
