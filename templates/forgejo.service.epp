@@ -2,7 +2,7 @@
       String $home,
       String $user,
       String $group,
-%>
+| -%>
 
 [Unit]
 Description=Forgejo (Beyond coding. We forge.)
