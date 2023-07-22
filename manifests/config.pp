@@ -4,9 +4,19 @@ class forgejo::config(
   String[1] $data_dir,
   String[1] $domain,
   String[1] $root_url,
+  String[1] $http_addr,
+  String[1] $http_protocol,
+  Integer $http_port,
   Boolean $disable_registration,
   Boolean $disable_git_hooks,
 ) {
+  file { "${forgejo::config_dir}/app.ini":
+    ensure => 'file',
+    owner  => $forgejo::user,
+    group  => $forgejo::group,
+    mode   => '0600',
+  }
+
   $forgejo_db_type = case $forgejo::database_type {
     'postgresql': {
       'postgres'
@@ -21,12 +31,12 @@ class forgejo::config(
 
   $settings = {
     'DEFAULT'    => {
-      'APP_NAME' => $forgejo::app_name,
+      'APP_NAME' => $app_name,
       'RUN_USER' => $forgejo::user,
-      'RUN_MODE' => $forgejo::run_mode,
+      'RUN_MODE' => $run_mode,
     },
     repository => {
-      'ROOT' => "${forgejo::data_path}/repositories",
+      'ROOT' => "${data_dir}repositories",
     },
     database   => {
       'DB_TYPE' => $forgejo_db_type,
@@ -36,17 +46,17 @@ class forgejo::config(
       'PASSWD'  => $forgejo::database_password,
     },
     server     => {
-      'PROTOCOL'         => $forgejo::http_protocol,
-      'HTTP_ADDR'        => $forgejo::http_addr,
-      'HTTP_PORT'        => $forgejo::http_port,
-      'DOMAIN'           => $forgejo::domain,
-      'ROOT_URL'         => $forgejo::root_url,
+      'PROTOCOL'         => $http_protocol,
+      'HTTP_ADDR'        => $http_addr,
+      'HTTP_PORT'        => $http_port,
+      'DOMAIN'           => $domain,
+      'ROOT_URL'         => $root_url,
     },
     service => {
-      'DISABLE_REGISTRATION' => $forgejo::disable_registration,
+      'DISABLE_REGISTRATION' => $disable_registration,
     },
     security => {
-      'DISABLE_GIT_HOOKS' => $forgejo::disable_git_hooks,
+      'DISABLE_GIT_HOOKS' => $disable_git_hooks,
     },
   }
 

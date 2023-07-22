@@ -26,13 +26,6 @@ class forgejo::install(
     mode   => '0700',
   }
 
-  file { "${config_dir}/app.ini":
-    ensure => 'file',
-    owner  => $forgejo::user,
-    group  => $forgejo::group,
-    mode   => '0600',
-  }
-
   $forgejo_binary_path = "${forgejo::home}/forgejo/forgejo"
   $tmp_forgejo_path = "/tmp/forgejo-${forgejo::version}"
 
