@@ -19,3 +19,4 @@ forgejo::config::disable_git_hooks: true
 forgejo::config::http_addr: 127.0.0.1
 forgejo::config::http_port: 3000
 forgejo::config::http_protocol: http
+forgejo::config::actions_enabled: false

@@ -9,6 +9,7 @@ class forgejo::config(
   Integer $http_port,
   Boolean $disable_registration,
   Boolean $disable_git_hooks,
+  Boolean $actions_enabled,
 ) {
   file { "${forgejo::config_dir}/app.ini":
     ensure => 'file',
@@ -58,6 +59,9 @@ class forgejo::config(
     security => {
       'DISABLE_GIT_HOOKS' => $disable_git_hooks,
     },
+    actions => {
+      'ENABLED' => $actions_enabled,
+    }
   }
 
   $settings.each | String $section, Hash $pairs | {
