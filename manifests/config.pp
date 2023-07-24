@@ -10,6 +10,8 @@ class forgejo::config(
   Boolean $disable_registration,
   Boolean $disable_git_hooks,
   Boolean $actions_enabled,
+  Boolean $openid_signin,
+  Boolean $openid_signup,
 ) {
   file { "${forgejo::config_dir}/app.ini":
     ensure => 'file',
@@ -61,6 +63,10 @@ class forgejo::config(
     },
     actions => {
       'ENABLED' => $actions_enabled,
+    },
+    openid => {
+      'ENABLE_OPENID_SIGNIN' => $openid_signin,
+      'ENABLE_OPENID_SIGNUP' => $openid_signup,
     }
   }
 
