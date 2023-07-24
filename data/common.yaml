@@ -1,5 +1,5 @@
 ---
-forgejo::version: '1.19.4-0'
+forgejo::version: '1.20.1-0'
 forgejo::home: /var/lib/forgejo
 forgejo::user: git
 forgejo::group: git
