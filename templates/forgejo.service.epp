@@ -1,4 +1,4 @@
-<%- | String $database_service,
+<%- | Optional[String] $database_service,
       String $home,
       String $user,
       String $group,

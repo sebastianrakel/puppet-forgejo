@@ -1,5 +1,7 @@
 class forgejo::database {
   case $forgejo::database_type {
+    'mysql': {
+    }
     'postgresql': {
       postgresql::server::db { $forgejo::database_name:
         user     => $forgejo::database_user,
@@ -11,7 +13,7 @@ class forgejo::database {
     'sqlite': {
     }
     default: {
-      fail('Unrecognized database type for server.')
+      fail("database_type is not supported: ${forgejo::database_type}")
     }
   }
 }

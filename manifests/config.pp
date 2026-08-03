@@ -21,6 +21,9 @@ class forgejo::config(
   }
 
   $forgejo_db_type = case $forgejo::database_type {
+    'mysql': {
+      'mysql'
+    }
     'postgresql': {
       'postgres'
     }
@@ -28,7 +31,7 @@ class forgejo::config(
       'sqlite3'
     }
     default: {
-      fail('database_type needs to be postgresql or sqlite')
+      fail("database_type is not supported: ${forgejo::database_type}")
     }
   }
 
