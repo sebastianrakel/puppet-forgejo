@@ -2,7 +2,13 @@
 forgejo::version: "12.0.4"
 forgejo::home: /var/lib/forgejo
 forgejo::user: git
+forgejo::user_options:
+  groups:
+    - "%{lookup('forgejo::group')}"
+  home: "%{lookup('forgejo::home')}"
+  managehome: true
 forgejo::group: git
+forgejo::group_options: {}
 forgejo::database_type: sqlite
 forgejo::database_user: forgejo
 forgejo::database_name: forgejo

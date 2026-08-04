@@ -1,18 +1,15 @@
 class forgejo::install(
   String[1] $download_source,
 ) {
-  if $manage_user {
+  if $forgejo::manage_user {
     group { $forgejo::group:
       ensure => present,
+      *      => $forgejo::group_options,
     }
 
     user { $forgejo::user:
-      managehome => true,
-      home       => $forgejo::home,
-      groups     => [
-        $forgejo::group,
-      ],
-      require    => Group[$forgejo::group],
+      *       => $forgejo::user_options,
+      require => Group[$forgejo::group],
     }
   }
 

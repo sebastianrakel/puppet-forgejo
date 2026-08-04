@@ -3,6 +3,8 @@ class forgejo (
   String[1] $home,
   String[1] $user,
   String[1] $group,
+  Hash $user_options,
+  Hash $group_options,
   Enum['mysql', 'postgresql', 'sqlite'] $database_type,
   String $database_host,
   String $database_name,
