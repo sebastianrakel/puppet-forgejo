@@ -1,17 +1,19 @@
 class forgejo::install(
   String[1] $download_source,
 ) {
-  group { $forgejo::group:
-    ensure => present,
-  }
+  if $manage_user {
+    group { $forgejo::group:
+      ensure => present,
+    }
 
-  user { $forgejo::user:
-    managehome => true,
-    home       => $forgejo::home,
-    groups     => [
-      $forgejo::group,
-    ],
-    require    => Group[$forgejo::group],
+    user { $forgejo::user:
+      managehome => true,
+      home       => $forgejo::home,
+      groups     => [
+        $forgejo::group,
+      ],
+      require    => Group[$forgejo::group],
+    }
   }
 
   $forgejo_dirs = [

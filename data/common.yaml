@@ -10,6 +10,7 @@ forgejo::service::database_servicename_postgresql: postgresql
 forgejo::install::download_source: "https://codeberg.org/forgejo/forgejo/releases/download/v%{lookup('forgejo::version')}/forgejo-%{lookup('forgejo::version')}-linux-amd64"
 forgejo::custom_settings: {}
 forgejo::config_dir: /etc/forgejo/
+forgejo::manage_user: true
 forgejo::config::app_name: "Forgejo"
 forgejo::config::run_mode: "prod"
 forgejo::config::data_dir: "%{lookup('forgejo::home')}/forgejo/data/"
