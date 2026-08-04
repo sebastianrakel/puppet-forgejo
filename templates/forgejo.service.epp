@@ -2,6 +2,7 @@
       String $home,
       String $user,
       String $group,
+      String $config_dir,
 | -%>
 
 [Unit]
@@ -21,7 +22,7 @@ User=<%= $user %>
 Group=<%= $group %>
 WorkingDirectory=<%= $home %>
 
-ExecStart=/usr/local/bin/forgejo web --config /etc/forgejo/app.ini
+ExecStart=/usr/local/bin/forgejo web --config <%= $config_dir %>/app.ini
 Restart=always
 Environment=USER=<%= $user %> HOME=<%= $home %> GITEA_WORK_DIR=<%= $home %>
 
