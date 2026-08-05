@@ -70,7 +70,11 @@ class forgejo::config(
     }
   }
 
-  $settings.each | String $section, Hash $pairs | {
+  # Merge custom settings with module settings; deep_merge lets the
+  # rightmost hash win, so $settings always takes precedence
+  $merged_settings = deep_merge($forgejo::custom_settings, $settings)
+
+  $merged_settings.each | String $section, Hash $pairs | {
     $pairs.each | String $key, $value | {
       ini_setting { "ini_${section}_${key}":
         ensure  => present,

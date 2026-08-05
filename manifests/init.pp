@@ -9,6 +9,7 @@ class forgejo (
   String $database_user,
   String $database_password,
   Stdlib::Absolutepath $config_dir,
+  Hash[String[1], Hash[String[1], Data]] $custom_settings,
 ) {
   contain forgejo::install
   contain forgejo::database
