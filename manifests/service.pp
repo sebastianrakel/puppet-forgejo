@@ -13,6 +13,7 @@ class forgejo::service(
         home             => $forgejo::home,
         database_service => $database_service,
         config_dir       => $forgejo::config_dir,
+        tmp_dir          => $forgejo::tmp_dir,
     }),
   }
   ~> service { 'forgejo':

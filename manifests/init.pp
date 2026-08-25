@@ -1,4 +1,5 @@
 class forgejo (
+  Optional[Stdlib::Absolutepath] $tmp_dir = undef,
   String[1] $version,
   String[1] $home,
   String[1] $user,

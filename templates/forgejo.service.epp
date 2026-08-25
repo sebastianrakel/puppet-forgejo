@@ -1,4 +1,5 @@
 <%- | Optional[String] $database_service,
+      Optional[String] $tmp_dir,
       String $home,
       String $user,
       String $group,
@@ -24,7 +25,7 @@ WorkingDirectory=<%= $home %>
 
 ExecStart=/usr/local/bin/forgejo web --config <%= $config_dir %>/app.ini
 Restart=always
-Environment=USER=<%= $user %> HOME=<%= $home %> GITEA_WORK_DIR=<%= $home %>
+Environment=USER=<%= $user %> HOME=<%= $home %> GITEA_WORK_DIR=<%= $home %> <% if $tmp_dir {%>TMPDIR=<%= $tmp_dir %><% } %>
 
 [Install]
 WantedBy=multi-user.target
