@@ -6,7 +6,7 @@ class forgejo::database {
       postgresql::server::db { $forgejo::database_name:
         user     => $forgejo::database_user,
         owner    => $forgejo::database_user,
-        password => postgresql_password($forgejo::database_user, $forgejo::database_password),
+        password => postgresql::postgresql_password($forgejo::database_user, $forgejo::database_password),
         require  => Class['postgresql::server'],
       }
     }
