@@ -30,3 +30,5 @@ forgejo::config::http_protocol: http
 forgejo::config::actions_enabled: false
 forgejo::config::openid_signin: false
 forgejo::config::openid_signup: false
+forgejo::runner::version: "13.2.0"
+forgejo::runner::download_source: "https://code.forgejo.org/forgejo/runner/releases/download/v%{lookup('forgejo::runner::version')}/forgejo-runner-%{lookup('forgejo::runner::version')}-linux-amd64"
